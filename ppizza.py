@@ -36,3 +36,4 @@ class Ingredientes ():
     def calculadora (self,):
 
         unidades = self.ingredientes.count()
+# hay que ver que es lo que se actualiza
