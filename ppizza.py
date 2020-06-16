@@ -4,38 +4,24 @@ import sqlite3
 
 class Clientes ():
     
-    def __init__(self, personal= None, mediana=None, familiar=None ):
-        self.personal = personal
-        self.mediana = mediana
-        self.familiar = familiar
+    def __init__(self, tipo ):
+        self.tipo = tipo
     
     def cont_personal (self):
               
-              count = 0
-              unidades = self.personal.fetchall()
-              for unidad in unidades:
-                  count += 1
-
+              count = self.tipo.count('personal')
               monto = count*10
               return count, monto
     
     def cont_mediana (self):
               
-              count = 0
-              unidades = self.mediana.fetchall()
-              for unidad in unidades:
-                  count += 1
-
+              count = self.tipo.count('mediana')
               monto = count*15
               return count, monto
     
     def cont_familiar (self):
               
-              count = 0
-              unidades = self.familiar.fetchall()
-              for unidad in unidades:
-                  count += 1
-
+              count = self.tipo.count('familiar')
               monto = count*20
               return count, monto
 
@@ -45,4 +31,8 @@ class Clientes ():
 class Ingredientes ():
 
     def __init__(self,ingredientes):
-        
+        self.ingredientes = ingredientes
+    
+    def calculadora (self,):
+
+        unidades = self.ingredientes.count()
