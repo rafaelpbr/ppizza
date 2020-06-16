@@ -36,8 +36,8 @@ class Ingredientes ():
     def calculadora (self,):
 
         unidades = self.ingredientes.count()
-<<<<<<< HEAD
+
 # hay que ver que es lo que se actualiza
-=======
+
 #quiero hacer una prueba de conflictos en commit
->>>>>>> 9b89484581a2b05ca58d275ed25b7d1cf8428980
+
