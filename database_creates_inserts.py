@@ -42,8 +42,7 @@ def crear_tablas():
 
     sql_task_table = """CREATE TABLE IF NOT EXISTS cliente (
                             id integer PRIMARY KEY,
-                            nombre text NOT NULL,
-                            apellido text);"""
+                            nombrecompleto text NOT NULL);"""
     sql_tables.append(sql_task_table)  
 
     sql_project_table = """ CREATE TABLE IF NOT EXISTS ingrediente (
@@ -54,23 +53,24 @@ def crear_tablas():
     sql_tables.append(sql_project_table)                                
 
     sql_task_table = """CREATE TABLE IF NOT EXISTS pedido (
-                            id integer NOT NULL,
+                            id integer PRIMARY KEY,
                             id_cliente integer NOT NULL,
                             fecha text NOT NULL,                             
                             FOREIGN KEY (id_cliente) REFERENCES cliente (id),
-                            PRIMARY KEY (id,id_cliente)
+                            UNIQUE (id,id_cliente) 
                             );""" 
     sql_tables.append(sql_task_table) 
 
     sql_task_table = """CREATE TABLE IF NOT EXISTS receta (
+                            id integer PRIMARY KEY,
                             id_pizza integer NOT NULL,
                             id_ingrediente integer NOT NULL,
                             id_pedido integer NOT NULL,
-                            id_cliente integer NOT NULL,                            
+                            id_cliente integer NOT NULL,
                             FOREIGN KEY (id_pizza) REFERENCES pizza (id),
                             FOREIGN KEY (id_ingrediente) REFERENCES ingrediente (id),
                             FOREIGN KEY (id_pedido,id_cliente) REFERENCES pedido (id,id_cliente),
-                            PRIMARY KEY (id_pizza,id_ingrediente,id_pedido,id_cliente)
+                            UNIQUE (id,id_pizza,id_ingrediente,id_pedido,id_cliente) 
                             );"""
     sql_tables.append(sql_task_table)                           
 
@@ -94,8 +94,8 @@ def insert_pizza(conn, pizza):
     return cur.lastrowid
 
 def insert_cliente(conn, cliente):
-    sql = ''' INSERT INTO cliente(nombre,apellido)
-              VALUES(?,?) '''
+    sql = ''' INSERT INTO cliente(nombrecompleto)
+              VALUES(?) '''
     cur = conn.cursor()
     cur.execute(sql, cliente)
     return cur.lastrowid
@@ -166,6 +166,10 @@ def insertar_pred():
         salchichon1 = ('salchichon', 'personal', 1.60)
         salchichon2 = ('salchichon', 'mediana', 1.85)
         salchichon3 = ('salchichon', 'familiar', 2.10)
+
+        base1 = ('margarita', 'personal', 0)
+        base2 = ('margarita', 'mediana', 0)
+        base3 = ('margarita', 'familiar', 0)
         
         """inserción de los datos predeterminados de ingredientes"""
         insert_ingrediente(conn, jamon1)
@@ -189,6 +193,9 @@ def insertar_pred():
         insert_ingrediente(conn, salchichon1)
         insert_ingrediente(conn, salchichon2)
         insert_ingrediente(conn, salchichon3)
+        insert_ingrediente(conn, base1)
+        insert_ingrediente(conn, base2)
+        insert_ingrediente(conn, base3)
 
 
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
