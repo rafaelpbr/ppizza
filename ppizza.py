@@ -2,50 +2,40 @@ import sqlite3
 from database_creates_inserts import *
 
 #Calcula cuantos pedidos hay en el archivo y cual es el indice donde comienza cada pedido
-class Pedido():
+#Retorna el nombre de cada persona por pedido
+class Cliente ():
 
     def __init__ (self, archivo):
         self.archivo = archivo
-        
+    
+    def datos_cliente (self):
 
-    def numero_pedidos (self):
-
-        x = 0
         y = []
         cont = len(self.archivo)
         for i in range(int(cont)):
             if self.archivo[0] == self.archivo[i]:
-                x += 1
-                y.append(i)
-        return y
-#Retorna el nombre de cada persona por pedido
-class Personas (Pedido):
-
-    def __init__ (self):
-        super().__init__()
-    
-    def nombre_cliente (self):
-
-        sacar = super().numero_pedidos()
+                y.append(i+1)
+        sacar = y
+        linea = ""
         nombre = ""
-        segundo = ""
-        apellido = ""
+        fecha = ""
         list_nombre = []
-        list_apellido = []
+        list_fecha = []
         for i in sacar:
-            nombre = super().self.archivo[i+1]
-            for d in nombre:
-                if d == " ":
-                    break
-                segundo = segundo + d
-            list_nombre.append(segundo)
-            segundo = ""
-        return list_nombre    
+            linea = self.archivo[i]
+            indice = linea.find(";")
+            ultimo = len(linea)
+            nombre = linea[:int(indice)]
+            fecha = linea [int(indice):int(ultimo)-1]
+            list_nombre.append(nombre)
+            list_fecha.append(fecha)
+        print (list_nombre, "\n", list_fecha)
 # Guarda en una lista cuantas veces se ha pedido un tipo de pizza y cuantas veces se ha pedido un ingrediente por cada tipo de pizza
-class Tipo_pizza (Pedido):
+
+class Tipo_pizza ():
 
     def __init__(self, archivo):
-        super().__init__(archivo)
+        self.archivo = archivo
 
     def p_personal (self):
 
@@ -57,8 +47,9 @@ class Tipo_pizza (Pedido):
         aceitunas = 0
         pepperoni = 0
         salchichon = 0
-        ingredientes = []
-        for pizza in c:
+        ingredientesp = []
+        
+        for pizza in self.archivo:
     
             if pizza.count("personal") == 1:
         
@@ -70,106 +61,93 @@ class Tipo_pizza (Pedido):
                 pepperoni += pizza.count("pepperoni")
                 salchichon += pizza.count("salchi")
                 champiñones += pizza.count("champ")
+        ingredientesp.append(personal)
+        ingredientesp.append(jamon)
+        ingredientesp.append(pimenton)
+        ingredientesp.append(doble_queso)
+        ingredientesp.append(aceitunas)
+        ingredientesp.append(pepperoni)
+        ingredientesp.append(salchichon)
+        ingredientesp.append(champiñones)
+        print(ingredientesp)
 
-        self.personal = personal
+    def p_mediana (self):
+
+        mediana = 0
+        champiñones = 0
+        jamon = 0
+        pimenton = 0
+        doble_queso = 0
+        aceitunas = 0
+        pepperoni = 0
+        salchichon = 0
+        ingredientesm = []
         
+        for pizza in self.archivo:
     
-    def get_personal (self):
-        return self.personal
+            if pizza.count("mediana") == 1:
+        
+                mediana += pizza.count("mediana")
+                jamon += pizza.count("jam")
+                pimenton += pizza.count("pimen")
+                doble_queso += pizza.count ("doble queso")
+                aceitunas += pizza.count("aceitunas")
+                pepperoni += pizza.count("pepperoni")
+                salchichon += pizza.count("salchi")
+                champiñones += pizza.count("champ")
+        ingredientesm.append(mediana)
+        ingredientesm.append(jamon)
+        ingredientesm.append(pimenton)
+        ingredientesm.append(doble_queso)
+        ingredientesm.append(aceitunas)
+        ingredientesm.append(pepperoni)
+        ingredientesm.append(salchichon)
+        ingredientesm.append(champiñones)    
+        print(ingredientesm)
     
-    def get_ingredientes_personal(self):
-        print (f'Se pidio: {jamon} de jamon, {pimenton} de pimenton, {doble_queso} de doble queso, {aceitunas} de aceitunas {pepperoni} de peperoni, {salchichon} de salchichon y {champiñones} de champiñones, tamaño personal')
+    def p_familiar (self):
+
+        familiar = 0
+        champiñones = 0
+        jamon = 0
+        pimenton = 0
+        doble_queso = 0
+        aceitunas = 0
+        pepperoni = 0
+        salchichon = 0
+        ingredientesf = []
+        
+        for pizza in self.archivo:
+    
+            if pizza.count("familiar") == 1:
+        
+                familiar += pizza.count("familiar")
+                jamon += pizza.count("jam")
+                pimenton += pizza.count("pimen")
+                doble_queso += pizza.count ("doble queso")
+                aceitunas += pizza.count("aceitunas")
+                pepperoni += pizza.count("pepperoni")
+                salchichon += pizza.count("salchi")
+                champiñones += pizza.count("champ")
+        ingredientesf.append(familiar)
+        ingredientesf.append(jamon)
+        ingredientesf.append(pimenton)
+        ingredientesf.append(doble_queso)
+        ingredientesf.append(aceitunas)
+        ingredientesf.append(pepperoni)
+        ingredientesf.append(salchichon)
+        ingredientesf.append(champiñones)
+        print(ingredientesf)
 
 #prueba de la logica para poder realizar las clases 
-f = open ("pedidos1.pz", "r")
+f = open ("pedidos3.pz", "r")
 c = f.readlines()
-b = Personas(c)
-print (b.numero_pedidos())
-print (b.nombre_cliente())
-
-
-cont = len(c)
-for i in range(int(cont)):
-    if c[0] == c[i]:
-        x += 1
-        y.append(i)
-print(x)
-print(y)
-segundo = ""
-list_nombre = []
-
-mediana = 0
-familiar = 0
-champiñones = 0
-jamon = 0
-pimenton = 0
-doble_queso = 0
-aceitunas = 0
-pepperoni = 0
-salchichon = 0
-
-for i in y:
-    nombre =c[i+1]
-    for d in nombre:
-        if d == " ":
-            break
-        segundo = segundo + d
-    list_nombre.append(segundo)
-    segundo = ""
-
-
-champiñones = 0
-jamon = 0
-pimenton = 0
-doble_queso = 0
-aceitunas = 0
-pepperoni = 0
-salchichon = 0
-for pizza in c:    
-
-    if pizza.count("mediana") == 1:
-    
-        mediana += pizza.count("mediana")
-        jamon += pizza.count("jam")
-        pimenton += pizza.count("pimen")
-        doble_queso += pizza.count ("doble queso")
-        aceitunas += pizza.count("aceitunas")
-        pepperoni += pizza.count("pepperoni")
-        salchichon += pizza.count("salchi")
-        champiñones += pizza.count("champ")
-print (f'Se pidio: {jamon} de jamon, {pimenton} de pimenton, {doble_queso} de doble queso, {aceitunas} de aceitunas {pepperoni} de peperoni, {salchichon} de salchichon y {champiñones} de champiñones, tamaño mediana')    
-
-champiñones = 0
-jamon = 0
-pimenton = 0
-doble_queso = 0
-aceitunas = 0
-pepperoni = 0
-salchichon = 0
-
-for pizza in c:    
-    
-
-    if pizza.count("familiar") == 1:
-        
-        familiar += pizza.count("familiar")
-        jamon += pizza.count("jam")
-        pimenton += pizza.count("pimen")
-        doble_queso += pizza.count ("doble queso")
-        aceitunas += pizza.count("aceitunas")
-        pepperoni += pizza.count("pepperoni")
-        salchichon += pizza.count("salchi")
-        champiñones += pizza.count("champ")
-
-print (f'Se pidio: {jamon} de jamon, {pimenton} de pimenton, {doble_queso} de doble queso, {aceitunas} de aceitunas {pepperoni} de peperoni, {salchichon} de salchichon y {champiñones} de champiñones, tamaño familiar')
-
-print ("Pidió ", personal, " personal ", "\nPidió ", mediana, " mediana ", "\nPidió ", familiar, " familiar")
-
-print(list_nombre)
-        
-
-
-
+b = Cliente(c)
+b.datos_cliente()
+d = Tipo_pizza(c)
+d.p_familiar()
+d.p_mediana()
+d.p_personal()
 
 
 #Creación del archivo resumen con los datos recolectados del archivo pedidos
