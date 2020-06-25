@@ -61,15 +61,24 @@ class Tipo_pizza ():
                 pepperoni += pizza.count("pepperoni")
                 salchichon += pizza.count("salchi")
                 champiñones += pizza.count("champ")
-        ingredientesp.append(personal)
-        ingredientesp.append(jamon)
-        ingredientesp.append(pimenton)
-        ingredientesp.append(doble_queso)
-        ingredientesp.append(aceitunas)
-        ingredientesp.append(pepperoni)
-        ingredientesp.append(salchichon)
-        ingredientesp.append(champiñones)
-        print(ingredientesp)
+                ingredientesp.append(personal)
+                ingredientesp.append(jamon)
+                ingredientesp.append(pimenton)
+                ingredientesp.append(doble_queso)
+                ingredientesp.append(aceitunas)
+                ingredientesp.append(pepperoni)
+                ingredientesp.append(salchichon)
+                ingredientesp.append(champiñones)
+                print(ingredientesp)
+                ingredientesp = []
+                personal = 0
+                champiñones = 0
+                jamon = 0
+                pimenton = 0
+                doble_queso = 0
+                aceitunas = 0
+                pepperoni = 0
+                salchichon = 0
 
     def p_mediana (self):
 
@@ -95,15 +104,24 @@ class Tipo_pizza ():
                 pepperoni += pizza.count("pepperoni")
                 salchichon += pizza.count("salchi")
                 champiñones += pizza.count("champ")
-        ingredientesm.append(mediana)
-        ingredientesm.append(jamon)
-        ingredientesm.append(pimenton)
-        ingredientesm.append(doble_queso)
-        ingredientesm.append(aceitunas)
-        ingredientesm.append(pepperoni)
-        ingredientesm.append(salchichon)
-        ingredientesm.append(champiñones)    
-        print(ingredientesm)
+                ingredientesm.append(mediana)
+                ingredientesm.append(jamon)
+                ingredientesm.append(pimenton)
+                ingredientesm.append(doble_queso)
+                ingredientesm.append(aceitunas)
+                ingredientesm.append(pepperoni)
+                ingredientesm.append(salchichon)
+                ingredientesm.append(champiñones)    
+                print(ingredientesm)
+                ingredientesm = []
+                mediana = 0
+                champiñones = 0
+                jamon = 0
+                pimenton = 0
+                doble_queso = 0
+                aceitunas = 0
+                pepperoni = 0
+                salchichon = 0
     
     def p_familiar (self):
 
@@ -129,25 +147,37 @@ class Tipo_pizza ():
                 pepperoni += pizza.count("pepperoni")
                 salchichon += pizza.count("salchi")
                 champiñones += pizza.count("champ")
-        ingredientesf.append(familiar)
-        ingredientesf.append(jamon)
-        ingredientesf.append(pimenton)
-        ingredientesf.append(doble_queso)
-        ingredientesf.append(aceitunas)
-        ingredientesf.append(pepperoni)
-        ingredientesf.append(salchichon)
-        ingredientesf.append(champiñones)
-        print(ingredientesf)
+                ingredientesf.append(familiar)
+                ingredientesf.append(jamon)
+                ingredientesf.append(pimenton)
+                ingredientesf.append(doble_queso)
+                ingredientesf.append(aceitunas)
+                ingredientesf.append(pepperoni)
+                ingredientesf.append(salchichon)
+                ingredientesf.append(champiñones)
+                print(ingredientesf)
+                ingredientesf = []
+                familiar = 0
+                champiñones = 0
+                jamon = 0
+                pimenton = 0
+                doble_queso = 0
+                aceitunas = 0
+                pepperoni = 0
+                salchichon = 0
 
 #prueba de la logica para poder realizar las clases 
-f = open ("pedidos3.pz", "r")
+f = open ("pedidos1.pz", "r")
 c = f.readlines()
 b = Cliente(c)
 b.datos_cliente()
 d = Tipo_pizza(c)
-d.p_familiar()
-d.p_mediana()
+print ("Pedidos Pizza Personal")
 d.p_personal()
+print ("Pedidos Pizza Mediana")
+d.p_mediana()
+print ("Pedidos Pizza Familiar")
+d.p_familiar()
 
 
 #Creación del archivo resumen con los datos recolectados del archivo pedidos
