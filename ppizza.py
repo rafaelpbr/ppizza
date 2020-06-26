@@ -1,3 +1,4 @@
+import database_pizza as db
 #Esta clase tiene de atributos el tamaño del archivo y el comienzo y el final de cada pedido
 class Pedido():
 
@@ -215,9 +216,19 @@ class Pizza (Cliente):
                     monto = 0
             print("Total del Pedido: ", total)
             total = 0
-
+"""
 f = open ("pedidos1.pz", "r")
 c = f.readlines()
 d = Pizza(c)
 b = Cliente(c)
-d.pedido_cliente()
+d.pedido_cliente()"""
+
+#prueba db1
+
+database = "pizzadb1.db"
+conn = db.create_connection(database)
+
+cur_one = conn.cursor()
+cur_one.execute("select jamon from pizza")
+row_one = cur_one.fetchone()
+print(row_one)

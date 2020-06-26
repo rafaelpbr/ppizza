@@ -31,7 +31,7 @@ def create_table(conn, create_table_sql):
 """Lista de Tablas a Crear e iteración para crearlas"""
 
 def crear_tablas():
-    database = "pizzadb.db"
+    database = "pizzadb1.db"
     create_connection(database)
 
     sql_tables = list()
