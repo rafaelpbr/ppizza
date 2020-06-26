@@ -6,10 +6,11 @@ def menu():
     """limpiar pantalla (válido para windows)"""
     os.system('cls')
     """Opciones del menú"""
+    print ("---------- PIZZATON ----------\n")
     print ("------------ Menú ------------\n")
     print ("1 - Cargar Pedidos")
     print ("2 - Generar Resumen de Operaciones")
-    print ("3 - Ver Ranking de clientes")
+    print ("3 - Ver Estadísticas de Ventas")
     print ("4 - Eliminar un pedido")
     print ("5 - Cambiar precios")
     print ("9 - salir")
