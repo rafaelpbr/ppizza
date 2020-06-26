@@ -23,92 +23,23 @@ class Pedido():
     def final(self):
     
         lcomienzo = self.comienzo()
+        ultimo = self.tamaño()
         lfin = []
         cont = self.tamaño()
         comi = self.comienzo()
         for i in comi:
             if i == 0:
-                continue
-            lfin.append(i-1)    
+                if cont <= 4:
+                    lfin.append(int(cont))
+                    continue
+                else:
+                    continue
+            lfin.append(i-1)
+        if cont >> 4:
+            lfin.append(ultimo)
+
         return lfin  
 #Recorre el archivo tomando en cuenta     
-    def pedido_cliente (self):
-
-        linea = ""
-        personal = 0
-        champiñones = 0
-        jamon = 0
-        pimenton = 0
-        doble_queso = 0
-        aceitunas = 0
-        pepperoni = 0
-        salchichon = 0
-        comienzo = self.comienzo()
-        fin = self.final()
-        pedidos = len(comienzo) - 1
-        for i in range(int(pedidos)):
-            print ("\nPedido: ", i)
-            for j in range (int(comienzo[i])+1,int(fin[i])):
-                linea = self.archivo[j]
-                if linea.count("personal"):
-                    jamon += linea.count("jam")
-                    pimenton += linea.count("pimen")
-                    doble_queso += linea.count ("doble queso")
-                    aceitunas += linea.count("aceitunas")
-                    pepperoni += linea.count("pepperoni")
-                    salchichon += linea.count("salchi")
-                    champiñones += linea.count("champ")
-                    print("esta persona pidio una pizza personal con: ", jamon, " jamon ", pimenton, " pimenton ", doble_queso, 
-                        " doble queso ", aceitunas, " aceitunas ", pepperoni, " pepproni ", salchichon, " salchichon ", champiñones, " champiñones" )
-                    personal = 0
-                    champiñones = 0
-                    jamon = 0
-                    pimenton = 0
-                    doble_queso = 0
-                    aceitunas = 0
-                    pepperoni = 0
-                    salchichon = 0
-                if linea.count("mediana"):
-                    jamon += linea.count("jam")
-                    pimenton += linea.count("pimen")
-                    doble_queso += linea.count ("doble queso")
-                    aceitunas += linea.count("aceitunas")
-                    pepperoni += linea.count("pepperoni")
-                    salchichon += linea.count("salchi")
-                    champiñones += linea.count("champ")
-                    print("esta persona pidio una pizza mediana con: ", jamon, " jamon ", pimenton, " pimenton ", doble_queso, 
-                        " doble queso ", aceitunas, " aceitunas ", pepperoni, " pepproni ", salchichon, " salchichon ", champiñones, " champiñones" )
-                    personal = 0
-                    champiñones = 0
-                    jamon = 0
-                    pimenton = 0
-                    doble_queso = 0
-                    aceitunas = 0
-                    pepperoni = 0
-                    salchichon = 0
-                if linea.count("familiar"):
-                    jamon += linea.count("jam")
-                    pimenton += linea.count("pimen")
-                    doble_queso += linea.count ("doble queso")
-                    aceitunas += linea.count("aceitunas")
-                    pepperoni += linea.count("pepperoni")
-                    salchichon += linea.count("salchi")
-                    champiñones += linea.count("champ")
-                    print("esta persona pidio una pizza familiar con: ", jamon, " jamon ", pimenton, " pimenton ", doble_queso, 
-                        " doble queso ", aceitunas, " aceitunas ", pepperoni, " pepproni ", salchichon, " salchichon ", champiñones, " champiñones" )
-                    personal = 0
-                    champiñones = 0
-                    jamon = 0
-                    pimenton = 0
-                    doble_queso = 0
-                    aceitunas = 0
-                    pepperoni = 0
-                    salchichon = 0
-            
-
-        
-
-
 
 class Cliente (Pedido):
 
@@ -146,8 +77,147 @@ class Cliente (Pedido):
             list_fecha.append(fecha)
         return list_fecha
 
+class Pizza (Cliente):
+    
+    def __init__(self, archivo):
+        Pedido.__init__(self, archivo)
+
+    def pedido_cliente (self):
+
+        linea = ""
+        personal = 0
+        champiñones = 0
+        jamon = 0
+        pimenton = 0
+        doble_queso = 0
+        aceitunas = 0
+        pepperoni = 0
+        salchichon = 0
+        monto = 0
+        total = 0
+        namec = Cliente.nombre(self)
+        datec = Cliente.fecha(self)
+        comienzo = Pedido.comienzo(self)
+        fin = Pedido.final(self)
+        if comienzo[0] == 0:
+            pedidos = len(comienzo) 
+        else:
+            pedidos = len(comienzo) - 1
+        for i in range(int(pedidos)):
+            print ("--------------------------------\nCliente: ", namec[i])
+            print("Fecha: ", datec[i])
+            for j in range (int(comienzo[i])+1,int(fin[i])):
+                linea = self.archivo[j]
+                if linea.count("personal"):
+                    print("Tipo de pizza: Personal")
+                    print("Ingredientes Adicional:")
+                    jamon += linea.count("jam")
+                    if jamon != 0:
+                        print ("Jamon")
+                    pimenton += linea.count("pimen")
+                    if pimenton != 0:
+                        print ("Pimenton")
+                    doble_queso += linea.count ("doble queso")
+                    if doble_queso != 0:
+                        print ("Doble Queso")
+                    aceitunas += linea.count("aceitunas")
+                    if aceitunas != 0:
+                        print ("Aceitunas")
+                    pepperoni += linea.count("pepperoni")
+                    if pepperoni != 0:
+                        print ("Pepperoni")
+                    salchichon += linea.count("salchi")
+                    if salchichon != 0:
+                        print ("Salchichon")
+                    champiñones += linea.count("champ")
+                    if champiñones != 0:
+                        print ("champiñones")
+                    monto = 10 + jamon*1.5 + pimenton*1.5 + doble_queso*0.80 + aceitunas*1.80 + pepperoni*1.25 + salchichon*1.60 + champiñones*1.75
+                    total = total + monto
+                    personal = 0
+                    champiñones = 0
+                    jamon = 0
+                    pimenton = 0
+                    doble_queso = 0
+                    aceitunas = 0
+                    pepperoni = 0
+                    salchichon = 0
+                    monto = 0
+                if linea.count("mediana"):
+                    print("Tipo de pizza: Personal")
+                    print("Ingredientes Adicional:")
+                    jamon += linea.count("jam")
+                    if jamon != 0:
+                        print ("Jamon")
+                    pimenton += linea.count("pimen")
+                    if pimenton != 0:
+                        print ("Pimenton")
+                    doble_queso += linea.count ("doble queso")
+                    if doble_queso != 0:
+                        print ("Doble Queso")
+                    aceitunas += linea.count("aceitunas")
+                    if aceitunas != 0:
+                        print ("Aceitunas")
+                    pepperoni += linea.count("pepperoni")
+                    if pepperoni != 0:
+                        print ("Pepperoni")
+                    salchichon += linea.count("salchi")
+                    if salchichon != 0:
+                        print ("Salchichon")
+                    champiñones += linea.count("champ")
+                    if champiñones != 0:
+                        print ("champiñones")
+                    monto = 15 + jamon*1.75 + pimenton*1.75 + doble_queso*1.30 + aceitunas*2.15 + pepperoni*1.70 + salchichon*1.85 + champiñones*2.05
+                    total = total + monto
+                    personal = 0
+                    champiñones = 0
+                    jamon = 0
+                    pimenton = 0
+                    doble_queso = 0
+                    aceitunas = 0
+                    pepperoni = 0
+                    salchichon = 0
+                    monto
+                if linea.count("familiar"):
+                    print("Tipo de pizza: Familiar")
+                    print("Ingredientes Adicional:")
+                    jamon += linea.count("jam")
+                    if jamon != 0:
+                        print ("Jamon")
+                    pimenton += linea.count("pimen")
+                    if pimenton != 0:
+                        print ("Pimenton")
+                    doble_queso += linea.count ("doble queso")
+                    if doble_queso != 0:
+                        print ("Doble Queso")
+                    aceitunas += linea.count("aceitunas")
+                    if aceitunas != 0:
+                        print ("Aceitunas")
+                    pepperoni += linea.count("pepperoni")
+                    if pepperoni != 0:
+                        print ("Pepperoni")
+                    salchichon += linea.count("salchi")
+                    if salchichon != 0:
+                        print ("Salchichon")
+                    champiñones += linea.count("champ")
+                    if champiñones != 0:
+                        print ("champiñones")
+                    monto = 20 + jamon*2 + pimenton*2 + doble_queso*1.70 + aceitunas*2.60 + pepperoni*1.90 + salchichon*2.10 + champiñones*2.50
+                    total = total + monto
+                    personal = 0
+                    champiñones = 0
+                    jamon = 0
+                    pimenton = 0
+                    doble_queso = 0
+                    aceitunas = 0
+                    pepperoni = 0
+                    salchichon = 0
+                    monto = 0
+            print("Total del Pedido: ", total)
+            total = 0
+
 f = open ("pedidos1.pz", "r")
 c = f.readlines()
-d = Pedido(c)
+d = Pizza(c)
 b = Cliente(c)
 d.pedido_cliente()
