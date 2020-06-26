@@ -1,11 +1,5 @@
-<<<<<<< HEAD
 import database_pizza as db
-<<<<<<< HEAD
-=======
-=======
->>>>>>> f49a7f0a4778fbdf4d6a1516f504a45a05a936ee
 
->>>>>>> 24ed0bc587ad827645ab8a04a72acecc13141a84
 #Esta clase tiene de atributos el tamaño del archivo y el comienzo y el final de cada pedido
 class Pedido():
 
@@ -91,7 +85,6 @@ class Pizza (Cliente):
         Pedido.__init__(self, archivo)
 
     def pedido_cliente (self):
-        import database_pizza as db
 
         linea = ""
         personal = 0
@@ -228,24 +221,3 @@ class Pizza (Cliente):
                     monto = 0
             print("Total del Pedido: ", total)
             total = 0
-<<<<<<< HEAD
-"""
-f = open ("pedidos1.pz", "r")
-=======
-
-f = open ("E:/Electiva_Python/Proyecto/pedidos1.pz", "r")
->>>>>>> 24ed0bc587ad827645ab8a04a72acecc13141a84
-c = f.readlines()
-d = Pizza(c)
-b = Cliente(c)
-d.pedido_cliente()"""
-
-#prueba db1
-
-database = "pizzadb1.db"
-conn = db.create_connection(database)
-
-cur_one = conn.cursor()
-cur_one.execute("select jamon from pizza")
-row_one = cur_one.fetchone()
-print(row_one)

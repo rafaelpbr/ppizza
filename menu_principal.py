@@ -1,6 +1,7 @@
 import os
 import crear_archivo as archivo
 import database_pizza as db
+from ppizza import *
 
 def menu():
     """limpiar pantalla (válido para windows)"""
@@ -35,7 +36,12 @@ while True:
     """acciones por cada opción"""
     if opcion == "1": #--------------------------------------------------------- OPCIÓN 1 MENU PRINCIPAL------------------------------------------------------------------------
         print("")
-        input("Eligió: Cargar Pedidos\npulsa enter para continuar")
+        nombre_archivo = input("Eligió: Cargar Pedidos\nColoque el nombre del Archivo que desea procesar junto con su extención: ")
+        f = open (nombre_archivo, "r")
+        c = f.readlines()
+        d = Pizza(c)
+        d.pedido_cliente()
+        f.close()
     elif opcion == "2": #------------------------------------------------------- OPCIÓN 2 MENU PRINCIPAL------------------------------------------------------------------------
         print("")
         #print("Generando archivo...")
