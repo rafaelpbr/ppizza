@@ -90,6 +90,50 @@ def insert_pedido(conn, pedido):
 
 
 
+""" calcula el id del próximo pedido a insertar"""
+def calcula_id(conn):
+    
+    cur_one = conn.cursor()
+    cur_one.execute("select max(id) from pedido")
+    row_one = cur_one.fetchone()
+    for row in row_one:
+        last_id = row
+
+    pedidoid = last_id +1
+    #print(pedidoid)
+    return pedidoid
+
+
+
+def insertar_nuevo_pedido(fecha,cliente):
+    database = "pizzadb.db"
+    conn = create_connection(database)
+
+    with conn:
+        
+        """Datos pedidos""" 
+        pedido_datos = (fecha,cliente)
+        
+        """inserción de pedidos"""
+        insert_pedido(conn, pedido_datos) 
+
+
+def insertar_nueva_pizza(tamano, jamon, champinon, pimenton, dob_queso, aceitunas, pepperoni, salchichon):
+    database = "pizzadb.db"
+    conn = create_connection(database)
+
+    with conn: 
+
+        id_pedido = calcula_id(conn)      
+
+        """Datos pizzas""" 
+        pizza_datos = (id_pedido,tamano, jamon, champinon, pimenton, dob_queso, aceitunas, pepperoni, salchichon)        
+
+        """inserción de pizzas"""
+        insert_pizza(conn, pizza_datos)
+
+
+
 #///////////////////////////////////////////////////////////// PRECIOS //////////////////////////////////////////////////////////////////////////
 
 
@@ -147,17 +191,6 @@ def select_all_pedido(conn):
     for row in rows:
         print(row)
 
-
-
-""" select para la impresion """ """
-def select_impresion(conn):
-    cur = conn.cursor()
-    cur.execute("select e.fecha, i.tamano, i.jamon, i.champinon, i.pimenton, i.dob_queso, i.aceitunas, i.pepperoni, i.salchichon from pedido e, pizza i where e.id = i.id_pedido order by e.fecha")
- 
-    rows = cur.fetchall()
- 
-    for row in rows:
-        print(row) """
 
 
 """ select fecha """

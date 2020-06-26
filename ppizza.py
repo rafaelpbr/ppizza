@@ -1,3 +1,5 @@
+import database_pizza as db
+
 #Esta clase tiene de atributos el tamaño del archivo y el comienzo y el final de cada pedido
 class Pedido():
 
@@ -106,6 +108,7 @@ class Pizza (Cliente):
         for i in range(int(pedidos)):
             print ("--------------------------------\nCliente: ", namec[i])
             print("Fecha: ", datec[i])
+            db.insertar_nuevo_pedido(datec[i],namec[i])
             for j in range (int(comienzo[i])+1,int(fin[i])):
                 linea = self.archivo[j]
                 if linea.count("personal"):
@@ -132,6 +135,7 @@ class Pizza (Cliente):
                     champiñones += linea.count("champ")
                     if champiñones != 0:
                         print ("champiñones")
+                    db.insertar_nueva_pizza('personal', jamon, champiñones, pimenton, doble_queso, aceitunas, pepperoni, salchichon)
                     monto = 10 + jamon*1.5 + pimenton*1.5 + doble_queso*0.80 + aceitunas*1.80 + pepperoni*1.25 + salchichon*1.60 + champiñones*1.75
                     total = total + monto
                     personal = 0
@@ -167,6 +171,7 @@ class Pizza (Cliente):
                     champiñones += linea.count("champ")
                     if champiñones != 0:
                         print ("champiñones")
+                    db.insertar_nueva_pizza('mediana', jamon, champiñones, pimenton, doble_queso, aceitunas, pepperoni, salchichon)
                     monto = 15 + jamon*1.75 + pimenton*1.75 + doble_queso*1.30 + aceitunas*2.15 + pepperoni*1.70 + salchichon*1.85 + champiñones*2.05
                     total = total + monto
                     personal = 0
@@ -202,6 +207,7 @@ class Pizza (Cliente):
                     champiñones += linea.count("champ")
                     if champiñones != 0:
                         print ("champiñones")
+                    db.insertar_nueva_pizza('familiar', jamon, champiñones, pimenton, doble_queso, aceitunas, pepperoni, salchichon)
                     monto = 20 + jamon*2 + pimenton*2 + doble_queso*1.70 + aceitunas*2.60 + pepperoni*1.90 + salchichon*2.10 + champiñones*2.50
                     total = total + monto
                     personal = 0
@@ -216,7 +222,7 @@ class Pizza (Cliente):
             print("Total del Pedido: ", total)
             total = 0
 
-f = open ("pedidos1.pz", "r")
+f = open ("E:/Electiva_Python/Proyecto/pedidos1.pz", "r")
 c = f.readlines()
 d = Pizza(c)
 b = Cliente(c)
