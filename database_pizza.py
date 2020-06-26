@@ -92,16 +92,16 @@ def insert_pedido(conn, pedido):
 
 """ calcula el id del próximo pedido a insertar"""
 def calcula_id(conn):
-    
+        
     cur_one = conn.cursor()
-    cur_one.execute("select max(id) from pedido")
+    cur_one.execute("select count(id) from pedido")
     row_one = cur_one.fetchone()
     for row in row_one:
-        last_id = row
+        last_id = row 
+        id_correcto =last_id -1
 
-    pedidoid = last_id +1
     #print(pedidoid)
-    return pedidoid
+    return id_correcto
 
 
 
@@ -117,14 +117,18 @@ def insertar_nuevo_pedido(fecha,cliente):
         """inserción de pedidos"""
         insert_pedido(conn, pedido_datos) 
 
+    
+
+
+
 
 def insertar_nueva_pizza(tamano, jamon, champinon, pimenton, dob_queso, aceitunas, pepperoni, salchichon):
     database = "pizzadb.db"
     conn = create_connection(database)
 
-    with conn: 
+    with conn:        
 
-        id_pedido = calcula_id(conn)      
+        id_pedido = calcula_id(conn) 
 
         """Datos pizzas""" 
         pizza_datos = (id_pedido,tamano, jamon, champinon, pimenton, dob_queso, aceitunas, pepperoni, salchichon)        
