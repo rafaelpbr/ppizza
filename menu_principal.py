@@ -11,8 +11,8 @@ def menu():
     print ("------------ Menú ------------\n")
     print ("1 - Cargar Pedidos")
     print ("2 - Generar Resumen de Operaciones")
-    print ("3 - Ver Estadísticas de Ventas")
-    print ("4 - Eliminar un pedido")
+    print ("3 - Leer archivo resumen")
+    print ("4 - Mostrar las tablas de la base de datos")
     print ("5 - Cambiar precios")
     print ("9 - salir")
     print ("\n------------------------------")
@@ -36,12 +36,25 @@ while True:
     """acciones por cada opción"""
     if opcion == "1": #--------------------------------------------------------- OPCIÓN 1 MENU PRINCIPAL------------------------------------------------------------------------
         print("")
+        
         nombre_archivo = input("Eligió: Cargar Pedidos\nColoque el nombre del Archivo que desea procesar junto con su extención: ")
-        f = open (nombre_archivo, "r")
-        c = f.readlines()
-        d = Pizza(c)
-        d.pedido_cliente()
-        f.close()
+        if nombre_archivo == "":
+            print("El archivo introducido no existe: ")
+            input("\nSi desea volver al menú principal, marque enter")
+        elif nombre_archivo.count(".pz") == 0:
+            print("El archivo introducido no existe: ")
+            input("\nSi desea volver al menú principal, marque enter")
+        else:
+            f = open (nombre_archivo, "r")
+            c = f.readlines()
+            f.close()
+            d = Pizza(c)
+            d.pedido_cliente()
+            input("\nDesea volver al menú principal, marque enter")
+
+        
+        
+        
     elif opcion == "2": #------------------------------------------------------- OPCIÓN 2 MENU PRINCIPAL------------------------------------------------------------------------
         print("")
         #print("Generando archivo...")
@@ -68,7 +81,11 @@ while True:
         
     elif opcion == "3": #------------------------------------------------------- OPCIÓN 3 MENU PRINCIPAL------------------------------------------------------------------------
         print("")
-        input("Eligió: Ver Ranking de clientes\npulsa enter para continuar")
+        input("Leer el Archivo Resumen\npulsa enter para continuar")
+        f = open("reporte.pz", "r")
+        d = f.read()
+        print (d)
+        input("\nDesea volver al menú principal, marque enter")
     elif opcion == "4": #------------------------------------------------------- OPCIÓN 4 MENU PRINCIPAL------------------------------------------------------------------------
         print("")
         input("Eligió: Eliminar un pedido\npulsa enter para continuar")
