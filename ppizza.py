@@ -1,4 +1,3 @@
-import database_pizza as db
 
 #Esta clase tiene de atributos el tamaño del archivo y el comienzo y el final de cada pedido
 class Pedido():
@@ -85,6 +84,7 @@ class Pizza (Cliente):
         Pedido.__init__(self, archivo)
 
     def pedido_cliente (self):
+        import database_pizza as db
 
         linea = ""
         personal = 0
