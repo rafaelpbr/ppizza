@@ -1,4 +1,3 @@
-from django.http import HttpResponse
+from django.shortcuts import render
 
-def index(request):
-    return HttpResponse('Aqui va a estar la pagina de pedidos')
+# Create your views here.
