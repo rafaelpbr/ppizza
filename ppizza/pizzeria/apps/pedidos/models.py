@@ -27,3 +27,4 @@ class Pizza(models.Model):
     class Meta:
         managed = False
         db_table = 'pizza'
+
